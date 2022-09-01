@@ -208,11 +208,18 @@ void mainTask(void const * argument)
 	//HAL_GPIO_WritePin(pwr2_GPIO_Port, pwr2_Pin, GPIO_PIN_SET);
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
 
+	//диапазон импульса 350 мксек 2,5 милисек у таймера 350-2550
+	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,350);
 	/* Infinite loop */
 	for(;;)
 	{
-
-
+/*
+		for (int var = 350; var < 2550; ++var) {
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,var);
+			osDelay(20);
+		}
+		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,350);
+		*/
 		osDelay(1);
 		//taskYIELD();
 	}
